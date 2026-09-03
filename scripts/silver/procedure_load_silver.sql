@@ -17,7 +17,9 @@ Usage Example:
     EXEC Silver.load_silver;
 ===============================================================================
 */
-
+PRINT '>> Truncating Table: silver.crm_cust_info';
+TRUNCATE TABLE silver.crm_cust_info;
+PRINT '>> Inserting Data Into: silver.crm_cust_info';
 INSERT INTO silver.crm_cust_info (
 	cst_id,
 	cst_key,
@@ -53,6 +55,9 @@ FROM (
 WHERE flag_last = 1; -- Select the most recent record per customer
 
 
+PRINT '>> Truncating Table: silver.crm_prd_info';
+TRUNCATE TABLE silver.crm_prd_info;
+PRINT '>> Inserting Data Into: silver.crm_prd_info';
 INSERT INTO silver.crm_prd_info (
 	prd_id,
 	cat_id,
@@ -86,6 +91,9 @@ SELECT
 FROM bronze.crm_prd_info;
 
 
+PRINT '>> Truncating Table: silver.crm_sales_details';
+TRUNCATE TABLE silver.crm_sales_details;
+PRINT '>> Inserting Data Into: silver.crm_sales_details';
 INSERT INTO silver.crm_sales_details (
 	sls_ord_num,
 	sls_prd_key,
@@ -129,6 +137,9 @@ FROM bronze.crm_sales_details;
 
 
 -- loading erp_cust_az12
+PRINT '>> Truncating Table: silver.erp_cust_az12';
+TRUNCATE TABLE silver.erp_cust_az12;
+PRINT '>> Inserting Data Into: silver.erp_cust_az12';
 INSERT INTO silver.erp_cust_az12 (
 	cid,
 	bdate,
@@ -154,6 +165,9 @@ FROM bronze.erp_cust_az12;
 
 
 -- loading the erp_loc_a101
+PRINT '>> Truncating Table: silver.erp_loc_a101';
+TRUNCATE TABLE silver.erp_loc_a101;
+PRINT '>> Inserting Data Into: silver.erp_loc_a101';
 INSERT INTO silver.erp_loc_a101 (
 	cid,
 	cntry
@@ -168,10 +182,11 @@ CASE
 END AS cntry  -- Normalize and Handle missing or blank country codes
 FROM bronze.erp_loc_a101;
 
-SELECT * FROM silver.erp_loc_a101;
-
 
 -- loading the erp_px_cat_g1v2
+PRINT '>> Truncating Table: silver.erp_px_cat_g1v2';
+TRUNCATE TABLE silver.erp_px_cat_g1v2;
+PRINT '>> Inserting Data Into: silver.erp_px_cat_g1v2';
 INSERT INTO silver.erp_px_cat_g1v2 (
 	id,
 	cat,
