@@ -153,3 +153,34 @@ END AS gen  -- Normalize gender values and handle unknown cases.
 FROM bronze.erp_cust_az12;
 
 
+-- loading the erp_loc_a101
+INSERT INTO silver.erp_loc_a101 (
+	cid,
+	cntry
+)
+SELECT
+REPLACE(cid, '-', '') AS cid,
+CASE 
+	WHEN TRIM(cntry) IS NULL OR TRIM(cntry) = '' THEN 'Unknown'
+	WHEN UPPER(TRIM(cntry)) IN ('US', 'USA') THEN 'United States'
+	WHEN UPPER(TRIM(cntry)) = 'DE' THEN 'Germany'
+	ELSE TRIM(cntry)
+END AS cntry  -- Normalize and Handle missing or blank country codes
+FROM bronze.erp_loc_a101;
+
+SELECT * FROM silver.erp_loc_a101;
+
+
+-- loading the erp_px_cat_g1v2
+INSERT INTO silver.erp_px_cat_g1v2 (
+	id,
+	cat,
+	subcat,
+	maintenance
+)
+SELECT
+	id,
+	cat,
+	subcat,
+	maintenance
+FROM bronze.erp_px_cat_g1v2;
