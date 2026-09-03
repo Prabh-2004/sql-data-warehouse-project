@@ -86,6 +86,18 @@ SELECT
 FROM bronze.crm_prd_info;
 
 
+INSERT INTO silver.crm_sales_details (
+	sls_ord_num,
+	sls_prd_key,
+	sls_cust_id,
+	sls_order_dt,
+	sls_ship_dt,
+	sls_due_dt,
+	sls_sales,
+	sls_quantity,
+	sls_price
+)
+
 SELECT
 sls_ord_num,
 sls_prd_key,
@@ -106,11 +118,38 @@ CASE
 	WHEN sls_sales IS NULL OR sls_sales <= 0 OR sls_sales != sls_quantity * ABS(sls_price)
 		THEN sls_quantity * ABS(sls_price)
 	ELSE sls_sales
-END AS sls_sales,
+END AS sls_sales, -- Recalculate sales if original value is missing or invalid
 sls_quantity,
 CASE
 	WHEN sls_price IS NULL OR sls_price <= 0
 		THEN sls_sales / NULLIF(sls_quantity, 0)
 	ELSE sls_price
-END AS sls_price
+END AS sls_price  -- Derive price if original value is invalid
 FROM bronze.crm_sales_details;
+
+
+-- loading erp_cust_az12
+INSERT INTO silver.erp_cust_az12 (
+	cid,
+	bdate,
+	gen
+)
+
+SELECT 
+CASE
+	WHEN cid LIKE 'NAS%' THEN SUBSTRING(cid, 4, LEN(cid))
+	ELSE cid
+END AS cid,  -- Removes 'NAS' prefix if present.
+CASE
+	WHEN bdate > GETDATE() THEN NULL
+	ELSE bdate
+END AS bdate, -- Set future birthdates to n/a
+CASE 
+	WHEN gen IS NULL OR TRIM(gen) = '' THEN 'Unknown'
+	WHEN UPPER(TRIM(gen)) = 'F' THEN 'Female'
+	WHEN UPPER(TRIM(gen)) = 'M' THEN 'Male'
+	ELSE gen
+END AS gen  -- Normalize gender values and handle unknown cases.
+FROM bronze.erp_cust_az12;
+
+
