@@ -1,11 +1,11 @@
 <mxfile host="Electron">
   <diagram name="Page-1" id="-2AVIkmmobd0FKsrLPV6">
-    <mxGraphModel dx="891" dy="553" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="893" dy="553" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="pE2vjC1uFCoyNzQ6Rrtj-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=none;fontSize=24;fontStyle=1" value="Data Model" vertex="1">
-          <mxGeometry height="40" width="150" x="30" y="20" as="geometry" />
+          <mxGeometry height="40" width="150" x="80" y="40" as="geometry" />
         </mxCell>
         <mxCell id="pE2vjC1uFCoyNzQ6Rrtj-2" parent="1" style="shape=table;startSize=40;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;html=1;shadow=0;rounded=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=16;" value="gold.dim_customers" vertex="1">
           <mxGeometry height="340" width="180" x="50" y="135" as="geometry" />
@@ -420,7 +420,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="pE2vjC1uFCoyNzQ6Rrtj-118" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;fillColor=none;strokeColor=none;" value="(Star Schema)" vertex="1">
-          <mxGeometry height="40" width="120" x="170" y="20" as="geometry" />
+          <mxGeometry height="40" width="120" x="220" y="40" as="geometry" />
         </mxCell>
         <mxCell id="pE2vjC1uFCoyNzQ6Rrtj-119" edge="1" parent="1" source="pE2vjC1uFCoyNzQ6Rrtj-3" style="edgeStyle=entityRelationEdgeStyle;fontSize=12;html=1;endArrow=ERzeroToMany;startArrow=ERmandOne;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" target="pE2vjC1uFCoyNzQ6Rrtj-87" value="">
           <mxGeometry height="100" relative="1" width="100" as="geometry">
@@ -442,6 +442,9 @@
             <mxPoint x="400" y="440" as="sourcePoint" />
             <mxPoint x="450" y="390" as="targetPoint" />
           </mxGeometry>
+        </mxCell>
+        <mxCell id="UifpaKnHqCyULwtnoEwI-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=none;" value="" vertex="1">
+          <mxGeometry height="490" width="790" x="30" y="110" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
